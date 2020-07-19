@@ -27,11 +27,18 @@ class CargaIngresoJeringa implements ToModel, WithHeadingRow
         $cliente = Clientes::where('id', $row['idcliente'])
             ->where('estado', 1)
             ->get()->first();
+        $clientesJeringas = ClientesJeringas::where('id_cliente', $row['idcliente'])
+			->where('id_jeringa', $row['idcodigojeringa'])
+			->where('estado', 1)
+			->get()->first();
 
         if($estadoHabilitado && $cliente){
             ++$this->rows;
             $estadoHabilitado->est_habilitado = 1;
             $estadoHabilitado->save();
+
+            $clientesJeringas->estado = 2;
+            $clientesJeringas->save();
 
             return new ClientesJeringas([
                 'id_cliente'        => $row['idcliente'],
@@ -43,7 +50,7 @@ class CargaIngresoJeringa implements ToModel, WithHeadingRow
                 'fecha_reg'         => $fecha,
                 'user_act'          => $userId,
                 'fecha_act'         => $fecha,
-                'estado'            => 1
+                'estado'            => 2
             ]);
         }
     }
