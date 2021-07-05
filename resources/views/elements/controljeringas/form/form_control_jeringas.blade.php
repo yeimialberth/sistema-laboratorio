@@ -36,13 +36,13 @@
                     <label>Descripción</label>
                     <textarea name="descripcion" class="form-control" placeholder="Ingresar una descripción" >{{ $updateForm ? $dataJeringa['descripcion'] : '' }}</textarea>
                 </div>
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label>Estado</label>
                     <select name="estadoJeringa" id="estadoJeringa" class="form-control" style="height: 32px !important;">
                         <option value="1" {{$dataJeringa['estado']==1 ? 'selected="selected"' : ''}}>Activo</option>
-                        <option value="0" {{$dataJeringa['estado']==0 ? 'selected="selected"' : ''}}>Inactivo</option>
+                        <option value="2" {{$dataJeringa['estado']==2 ? 'selected="selected"' : ''}}>Inactivo</option>
                     </select>
-                </div>
+                </div>--}}
                 @if($errorCodigoId)
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

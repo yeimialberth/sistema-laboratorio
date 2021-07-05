@@ -102,7 +102,7 @@ class ControlJeringasController extends Controller
                 $clienteJeringas->fecha_ing_sal = $fechaIniSal;
                 $clienteJeringas->user_act = $userId;
                 $clienteJeringas->fecha_act = $fecha;
-                $clienteJeringas->estado = $request->estadoJeringa;
+//                $clienteJeringas->estado = $request->estadoJeringa;
                 $clienteJeringas->save();
             }else{
                 $getClientesJeringas = $this->getClientesJeringas($request->jeringaID);
@@ -174,6 +174,14 @@ class ControlJeringasController extends Controller
 
             if($this->getJeringaId($request->jeringaId) && $validaEntrada){
 
+							$clientesJeringas = ClientesJeringas::where('id_cliente', $request->clienteId)
+								->where('id_jeringa', $request->jeringaId)
+								->where('estado', 1)
+								->get()->first();
+
+								$clientesJeringas->estado = 2;
+								$clientesJeringas->save();
+
                 $clienteJeringas = new ClientesJeringas();
                 $clienteJeringas->id_cliente = $request->clienteId;
                 $clienteJeringas->id_jeringa = $this->getJeringaId($request->jeringaId);
@@ -185,7 +193,8 @@ class ControlJeringasController extends Controller
                 $clienteJeringas->fecha_reg = $fecha;
                 $clienteJeringas->user_act = $userId;
                 $clienteJeringas->fecha_act = $fecha;
-                $clienteJeringas->estado = $request->estadoJeringa;
+//                $clienteJeringas->estado = $request->estadoJeringa;
+                $clienteJeringas->estado = 2;
                 $clienteJeringas->save();
 //            }elseif(($validaEntrada != '' && !$validaEntrada && $validaSalida) || ($validaEntrada != '' && !$validaEntrada && !$validaSalida) /*&& $validaSalida != ''*/){
             }elseif($this->getJeringaId($request->jeringaId) && $validaSalida){
@@ -201,7 +210,8 @@ class ControlJeringasController extends Controller
                 $clienteJeringas->fecha_reg = $fecha;
                 $clienteJeringas->user_act = $userId;
                 $clienteJeringas->fecha_act = $fecha;
-                $clienteJeringas->estado = $request->estadoJeringa;
+//                $clienteJeringas->estado = $request->estadoJeringa;
+                $clienteJeringas->estado = 1;
                 $clienteJeringas->save();
             }else{
                 $estado = ['estado'=>1, 'est_jeringa'=>$request->estJeringa];
