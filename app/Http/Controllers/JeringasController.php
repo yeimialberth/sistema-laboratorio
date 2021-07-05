@@ -125,7 +125,7 @@ class JeringasController extends Controller
             $dataJeringas = $dataJeringas->where('id', $jeringa);
         if($lavJer)
             $dataJeringas = $dataJeringas->where('jer_lav', $lavJer)->where('est_habilitado', 1);
-        $dataJeringas = $dataJeringas->orderBy('id', 'ASC')->paginate(10);
+        $dataJeringas = $dataJeringas->orderBy('id', 'ASC')->paginate(20);
         return $dataJeringas;
     }
 
@@ -144,6 +144,7 @@ class JeringasController extends Controller
             ->where('jeringas.est_habilitado', '2')
             ->where('jeringas.estado', '1')
             ->where('clientes_jeringas.estado', '1')
+            ->where('clientes_jeringas.est_jeringa', '2')
             ->where('clientes.estado', '1');
         if($cliente)
             $dataJeringaPrestamo = $dataJeringaPrestamo->where('clientes_jeringas.id_cliente', $cliente);

@@ -87,29 +87,29 @@
                                     </form>
                                 </div>
                                 <div>
-                                <form action="{{route('cargaClientes')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="col-md-12">
-                                        <div class="box box-warning box-solid" style="border: 1px solid #3c8dbc;">
-                                            <div class="box-header with-border" style="background-color: #3c8dbc">
-                                                <h3 class="box-title">Importar Clientes</h3>
+                                    <form action="{{route('cargaClientes')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="col-md-12">
+                                            <div class="box box-warning box-solid" style="border: 1px solid #3c8dbc;">
+                                                <div class="box-header with-border" style="background-color: #3c8dbc">
+                                                    <h3 class="box-title">Importar Clientes</h3>
+                                                </div>
+                                                <div class="box-body" style="">
+                                                    <input type="file" name="impClientes">
+                                                    <div class="clearfix">&nbsp;</div>
+                                                    <button style="width: 100px;">Importar</button>
+                                                </div>
+                                                @if(Session::has('message4'))
+                                                    <p class="alert alert-success">{{Session::get('message4')}}</p>
+                                                @elseif(Session::has('messageCountCliente'))
+                                                    <p class="alert alert-warning"><strong>{{Session::get('messageCountCliente')}}</strong></p>
+                                                @elseif(Session::has('message44'))
+                                                    <p class="alert alert-error">{{Session::get('message44')}}</p>
+                                                @endif
                                             </div>
-                                            <div class="box-body" style="">
-                                                <input type="file" name="impClientes">
-                                                <div class="clearfix">&nbsp;</div>
-                                                <button style="width: 100px;">Importar</button>
-                                            </div>
-                                            @if(Session::has('message4'))
-                                                <p class="alert alert-success">{{Session::get('message4')}}</p>
-                                            @elseif(Session::has('messageCountCliente'))
-                                                <p class="alert alert-warning"><strong>{{Session::get('messageCountCliente')}}</strong></p>
-                                            @elseif(Session::has('message44'))
-                                                <p class="alert alert-error">{{Session::get('message44')}}</p>
-                                            @endif
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
+                                    </form>
+                                </div>
                             @endif
                             <div>
                                 <form action="{{route('cargaJeringasLavado')}}" method="post" enctype="multipart/form-data">
